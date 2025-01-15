@@ -1,0 +1,16 @@
+security:
+    providers:
+        users_in_memory: { memory: null }
+    firewalls:
+        api_token:
+            pattern: ^/token$
+            security: false
+        main:
+            pattern: ^/
+            security: true
+            stateless: true
+            oauth2: true
+            provider: users_in_memory
+
+    access_control:
+        - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }
